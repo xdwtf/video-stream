@@ -1,0 +1,34 @@
+name: hmm
+
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 */6 * * *"
+
+env: 
+  API_ID: ${{ secrets.API_ID }}
+  API_HASH: ${{ secrets.API_HASH }}
+  SESSION_NAME: ${{ secrets.SESSION_NAME }}
+  BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+  OWNER_USERNAME: ${{ secrets.OWNER_USERNAME }}
+  BOT_USERNAME: ${{ secrets.BOT_USERNAME }}
+  MONGODB_URL: ${{ secrets.MONGODB_URL }}
+  OWNER_ID: ${{ secrets.OWNER_ID }}
+  ALIVE_NAME: ${{ secrets.ALIVE_NAME }}
+  SUDO_USERS: ${{ secrets.SUDO_USERS }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Checkout
+         uses: actions/checkout@master
+       
+       - name: Setup Env
+         run: |
+              sudo bash x.sh
+
+       - name: Run Bot
+         run: |
+              python main.py
